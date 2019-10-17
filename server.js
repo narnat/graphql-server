@@ -71,9 +71,15 @@ mongoose.connect(process.env.DB_CONNECTION,
         },
       };
      
+      const options = {
+        port: 4000,
+        endpoint: '/graphql',
+        subscriptions: '/subscriptions',
+        playground: '/playground',
+      }
      
      const server = new GraphQLServer({ typeDefs, resolvers });
-     server.start(() => console.log('Server is running on localhost:4000'));
+     server.start(options, () => console.log('Server is running on localhost:4000'));
     });
 })
 .catch (err=> {
